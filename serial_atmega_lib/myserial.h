@@ -1,6 +1,6 @@
-#ifdef yl_serial.h
+#ifndef MYSERIAL_H
 
-#define yl_serial.h
+#define MYSERIAL_H
 #define F_CPU 16000000L         // the hardware type attached to the chip
 #define BUAD 9600               // selecter speed
 #define BRC ((F_CPU/16/BUAD)-1) // calculated value 103 

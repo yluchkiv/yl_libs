@@ -1,14 +1,14 @@
 //
-//   yl_serial.h
+//   myserial.h
 //
 
-#include "yl_serial.h"
 #include <avr/io.h>
+#include "myserial.h"
 
 void serial_setup(void)
 {
-    UBRR0H = (BRC >> 8);                        // set the value 103 (0110 0111) into register ; the value is 8-bit, has to be shifted
-    UBRR0L = BRC;                               // set the value into register
+    UBRR0H = (unsigned char)(BRC >> 8);                        // set the value 103 (0110 0111) into register ; the value is 8-bit, has to be shifted
+    UBRR0L = (unsigned char) BRC;                               // set the value into register
     UCSR0B = (1<<RXEN0)|(1<<TXEN0);             // enable RX and TX 
     UCSR0C = (1<<USBS0)|(1<<UCSZ00)|(1<<UCSZ01);
     // set datframe 8 bit ans 2 stop bits - Extra stop bits can  add a little extra receive processing time,
@@ -27,8 +27,9 @@ unsigned char USART_Receive(void)
     return UDR0;                                // Get and return received data from buffer */
 }
 
-void USART_Flush(void)
-{
-    unsigned char dummy;
-    while (UCSR0A & (1<<RXC0)) dummy = UDR0;  //The following code example shows how to flush the receive buffer.
-}
+// void USART_Flush(void)
+// {
+//     unsigned char dummy;
+//     while (UCSR0A & (1<<RXC0))
+//         dummy = UDR0;  //The following code example shows how to flush the receive buffer.
+// }
